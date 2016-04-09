@@ -1,37 +1,47 @@
-// ItemType : 0 => Item
-// ItemType : 1 => Weapon
-// ItemType : 2 => Armor
-var startNum = $gameVariables.value(32);
-var endNum = $gameVariables.value(33);
-var range = endNum - startNum;
-var id = Math.floor(Math.random() * (range + 1)) + startNum;
-var branch = Math.floor(Math.random() * 3);
-switch(branch){
-	case 0 :
-		id = Math.ceil(id/=5);
-		$gameParty.gainItem($dataItems[id], 1);
-		$gameVariables.setValue(34, $dataItems[id].name);
-		break;
-	case 1 :
-		var x = Math.floor(Math.random() * 8);
-		$gameParty.gainItem($dataWeapons[id+x*40], 1, true);
-		$gameVariables.setValue(34, $dataWeapons[id+x*40].name);
-		break;
-	case 2 :
-		var x = Math.floor(Math.random() * 3);
-		$gameParty.gainItem($dataArmors[id+x*40], 1, true);
-		$gameVariables.setValue(34, $dataArmors[id+x*40].name);
-		break;
-}
+// 使用する変数
+// $gameVariables.value(32) : 乱数の開始値;
+// $gameVariables.value(33) : 乱数の終了値;
+// $gameVariables.value(34) : 取得したアイテムの名前を格納する変数;
+// $gameVariables.value(35) : 取得するアイテムの分類ごとに分岐するための変数;
 
-// ------------------------------
-// イベントスクリプト用
+// Items
+var itemCount = 8;
+var ganreCount = 2;
 var startNum = $gameVariables.value(32);
 var endNum = $gameVariables.value(33);
+var itemMaxCount = $gameVariables.value(36);
 var range = endNum - startNum;
-var id = Math.floor(Math.random() * (range + 1)) + startNum;
-var branch = Math.floor(Math.random() * 3);
-switch(branch){
-case 0 : id = Math.ceil(id/=5); $gameParty.gainItem($dataItems[id], 1); $gameVariables.setValue(34, $dataItems[id].name); break;
-case 1 : var x = Math.floor(Math.random() * 8); $gameParty.gainItem($dataWeapons[id+x*40], 1, true); $gameVariables.setValue(34, $dataWeapons[id+x*40].name); break;
-case 2 : var x = Math.floor(Math.random() * 3); $gameParty.gainItem($dataArmors[id+x*40], 1, true); $gameVariables.setValue(34, $dataArmors[id+x*40].name); break; }
+var correct = Math.ceil(itemMaxCount / itemCount);
+var id = Math.floor(Math.random() * (range / correct + 1)) + startNum;
+var x = Math.floor(Math.random() * ganreCount);
+var targetId = Math.floor(id + x * itemCount);
+$gameParty.gainItem($dataItems[targetId], 1, true);
+$gameVariables.setValue(34, $dataItems[targetId].name);
+
+// Weapons
+var itemCount = 40;
+var ganreCount = 8;
+var startNum = $gameVariables.value(32);
+var endNum = $gameVariables.value(33);
+var itemMaxCount = $gameVariables.value(36);
+var range = endNum - startNum;
+var correct = Math.ceil(itemMaxCount / itemCount);
+var id = Math.floor(Math.random() * (range / correct + 1)) + startNum;
+var x = Math.floor(Math.random() * ganreCount);
+var targetId = Math.floor(id + x * itemCount);
+$gameParty.gainItem($dataWeapons[targetId], 1, true);
+$gameVariables.setValue(34, $dataWeapons[targetId].name);
+
+// Armors
+var itemCount = 40;
+var ganreCount = 2;
+var startNum = $gameVariables.value(32);
+var endNum = $gameVariables.value(33);
+var itemMaxCount = $gameVariables.value(36);
+var range = endNum - startNum;
+var correct = Math.ceil(itemMaxCount / itemCount);
+var id = Math.floor(Math.random() * (range / correct + 1));
+var x = Math.floor(Math.random() * ganreCount);
+var targetId = Math.floor(id + x * itemCount) + startNum;
+$gameParty.gainItem($dataArmors[targetId], 1, true);
+$gameVariables.setValue(34, $dataArmors[targetId].name);
