@@ -1,45 +1,11 @@
-var pictId = $gameVariables.value(30);
-var pictPos = $gameVariables.value(32);
-
-if (pictId==1){
-	switch (pictPos){
-		case 1:
-			$gameVariables.setValue(35, $gameVariables.value(12));
-			break;
-		case 2:
-			$gameVariables.setValue(35, $gameVariables.value(13));
-			break;
-		case 3:
-			$gameVariables.setValue(35, $gameVariables.value(14));
-			break;
-		case 4:
-			$gameVariables.setValue(35, $gameVariables.value(15));
-			break;
-	}
-}
-
-// 以下はイベントスクリプト用
-
-var pictId = $gameVariables.value(30);
-var pictPos = $gameVariables.value(32);
-if (pictId==1){ switch (pictPos){ case 1:
-$gameVariables.setValue(35, $gameVariables.value(12));
-break; case 2:
-$gameVariables.setValue(35, $gameVariables.value(13));
-break; case 3:
-$gameVariables.setValue(35, $gameVariables.value(14));
-break; case 4:
-$gameVariables.setValue(35, $gameVariables.value(15));
-break; } }
-
-var pictId = $gameVariables.value(30);
-var pictPos = $gameVariables.value(32);
-if (pictId==2){ switch (pictPos){ case 1:
-$gameVariables.setValue(38, $gameVariables.value(12));
-break; case 2:
-$gameVariables.setValue(38, $gameVariables.value(13));
-break; case 3:
-$gameVariables.setValue(38, $gameVariables.value(14));
-break; case 4:
-$gameVariables.setValue(38, $gameVariables.value(15));
-break; } }
+// イベントスクリプト用
+var id = $gameVariables.value(15)
+var dir = "l"
+var face = $gameVariables.value(16)
+var actor = "actor" + id + "_" + dir + "_" + face
+var directory = "actor" + id + "/" + "left"
+var file = directory + "/" + actor
+var x = $gameVariables.value(12)
+var y = $gameVariables.value(14)
+$gameScreen.showPicture(1, file, 1, x, y, 
+85, 85, 255, 0);
