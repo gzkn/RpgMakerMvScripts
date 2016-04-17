@@ -17,7 +17,7 @@
 		var expConstant = 500;
 		var expPlus = 1.0 + this._level / 100;
 		var expFinal = expConstant * expPlus;
-		return this._level * expFinal + expFinal;
+		return Math.ceil(this._level * expFinal + expFinal);
 	};
 
 })();
